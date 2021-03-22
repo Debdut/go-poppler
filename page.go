@@ -5,6 +5,7 @@ package poppler
 // #include <glib.h>
 import "C"
 import (
+	"fmt"
 	"github.com/ungerik/go-cairo"
 	"unsafe"
 )
@@ -165,7 +166,11 @@ func (p *Page) ConvertToSVG(filename string){
 // Converts a page into PNG and saves to file.
 // Inspired by https://github.com/dawbarton/pdf2svg
 func (p *Page) ConvertToPNG(filename string){
+	fmt.Println("ConvertToPNG", filename)
 	width, height := p.Size()
+
+	fmt.Println("======")
+	fmt.Println(p.Size())
 
 	// Open the SVG file
 	surface := cairo.NewSurface(cairo.FORMAT_ARGB32, int(width), int(height))
@@ -176,7 +181,7 @@ func (p *Page) ConvertToPNG(filename string){
 
 	// Render the PDF file into the SVG file
 	C.poppler_page_render_for_printing(p.p, (*C.cairo_t)(unsafe.Pointer(drawcontext)) )
-	
+
 	surface.WriteToPNG(filename)
 
 	// Close the SVG file

@@ -61,6 +61,10 @@ func (d *Document) Close() {
 	C.g_object_unref(C.gpointer(d.doc))
 }
 
+func (d *Document) Split() {
+
+}
+
 /*
 func (d *Document) GetAttachments() []Attachment {
 	return
