@@ -10,7 +10,6 @@ import "C"
 import (
 	"errors"
 	"path/filepath"
-	"unsafe"
 )
 
 type poppDoc *C.struct__PopplerDocument
@@ -34,6 +33,7 @@ func Open(filename string) (doc *Document, err error) {
 	return
 }
 
+/* TODO: Use document new from bytes
 func Load(data []byte) (doc *Document, err error) {
 	var e *C.GError
 	var d poppDoc
@@ -46,6 +46,8 @@ func Load(data []byte) (doc *Document, err error) {
 	}
 	return
 }
+*/
+
 
 func Version() string {
 	return C.GoString(C.poppler_get_version())
