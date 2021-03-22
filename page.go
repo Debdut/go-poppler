@@ -173,8 +173,8 @@ func (p *Page) ConvertToPNG(filename string){
 	fmt.Println(p.Size())
 
 	// Open the SVG file
-	surface := cairo.NewSurface(cairo.FORMAT_ARGB32, int(width), int(height))
-	// surface := cairo.NewSVGSurface( filename, width, height, cairo.SVG_VERSION_1_2 )
+	// surface := cairo.NewSurface(cairo.FORMAT_ARGB32, int(width), int(height))
+	surface := cairo.NewSVGSurface( filename, width, height, cairo.SVG_VERSION_1_2 )
 
 	// Get cairo context pointer
 	_, drawcontext :=  surface.Native()
